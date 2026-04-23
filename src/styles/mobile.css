@@ -1,0 +1,185 @@
+@media (max-width: 560px) {
+  .app {
+    grid-template-columns: 1fr;
+    gap: 0;
+    overflow-x: hidden;
+  }
+
+  .content {
+    display: block;
+    height: auto;
+    overflow-x: hidden;
+  }
+
+  .content__body {
+    padding: 16px;
+  }
+
+  /* Header adjustments for mobile */
+  .page-header {
+    display: grid;
+    grid-template-columns: 40px 1fr 40px;
+    gap: 12px;
+    padding: 12px 16px;
+    align-items: center;
+    border-bottom: none;
+    min-height: auto;
+  }
+
+  .page-header__title-block {
+    grid-column: 2;
+    justify-content: center;
+    margin: 0;
+  }
+
+  .page-header__title-block h1 {
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+
+  .page-header__menu-button {
+    display: flex;
+    grid-column: 1;
+    font-size: 1.5rem;
+    color: #1f2f68;
+  }
+
+  .page-header__profile {
+    grid-column: 3;
+    justify-self: end;
+  }
+
+  .page-header__avatar {
+    width: 38px;
+    height: 38px;
+  }
+
+  .page-header__controls {
+    display: none; /* Hide desktop search and icons */
+  }
+
+  /* Transactions Page Mobile Layout */
+  .transactions-page {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .transactions-page__mobile-search {
+    display: flex;
+    margin-bottom: 20px;
+  }
+
+  .dashboard__grid--top,
+  .dashboard__grid--middle,
+  .dashboard__grid--bottom,
+  .transactions-page__top {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  /* Keep horizontal scroll for cards as per reference */
+  .cards-row {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 16px;
+    margin: 0 -16px;
+    padding: 4px 16px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .bank-card {
+    flex: 0 0 280px;
+    width: 280px;
+  }
+
+  /* My Expense Card */
+  .transactions-expense-card {
+    padding: 24px;
+  }
+
+  .transactions-expense-chart {
+    height: 180px;
+    gap: 10px;
+  }
+
+  /* Filters */
+  .transactions-filters {
+    gap: 10px;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+
+  .transactions-filters__tab {
+    font-size: 0.8rem;
+    padding-bottom: 8px;
+  }
+
+  /* Transaction List */
+  .transactions-table-card {
+    background: transparent;
+    box-shadow: none;
+    padding: 0;
+  }
+
+  .transactions-table__header {
+    display: none;
+  }
+
+  .transactions-table__row {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 12px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  }
+
+  .transactions-table__description {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+  }
+
+  .transactions-table__bullet {
+    width: 38px;
+    height: 38px;
+    font-size: 1.2rem;
+  }
+
+  .transactions-table__description span:first-of-type {
+    display: block;
+    font-weight: 600;
+    color: #232b5d;
+    font-size: 0.9rem;
+  }
+
+  .transactions-table__date-mobile {
+    display: block;
+    color: #718ebf;
+    font-size: 0.75rem;
+    margin-top: 2px;
+  }
+
+  /* Hide other columns */
+  .transactions-table__row > span:not(.transactions-table__amount),
+  .transactions-table__date-desktop,
+  .transactions-table__receipt {
+    display: none;
+  }
+
+  .transactions-table__amount {
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+
+  .transactions-pagination {
+    justify-content: center;
+    padding-top: 8px;
+  }
+}

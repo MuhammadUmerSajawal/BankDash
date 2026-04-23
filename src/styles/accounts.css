@@ -1,0 +1,186 @@
+.accounts-page {
+  width: 100%;
+  padding: 0;
+}
+
+.accounts-summary-card {
+  padding: 18px 22px;
+  min-height: 112px;
+  display: flex;
+  align-items: center;
+}
+
+.accounts-summary-card__icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.accounts-transactions-card {
+  padding: 14px 22px;
+  min-height: 0;
+}
+
+.accounts-transactions-list {
+  display: grid;
+}
+
+.accounts-transaction-row {
+  display: grid;
+  grid-template-columns: minmax(0, 2.2fr) 1fr 1fr 1fr auto;
+  gap: 18px;
+  align-items: center;
+  padding: 14px 0;
+}
+
+.accounts-transaction-row + .accounts-transaction-row {
+  border-top: 1px solid #f1f5fb;
+}
+
+.accounts-transaction-row__main {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.accounts-transaction-row__icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.accounts-my-card {
+  min-height: 205px;
+  height: auto;
+  padding: 24px;
+}
+
+.accounts-chart-card {
+  padding: 18px 22px 16px;
+  min-height: 330px;
+  display: flex;
+  flex-direction: column;
+}
+
+.accounts-chart-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.accounts-chart-card__legend {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  color: var(--light-blue);
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+
+.accounts-chart-card__legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.accounts-legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  display: inline-block;
+}
+
+.accounts-legend-dot--debit {
+  background: #1814F3;
+}
+
+.accounts-legend-dot--credit {
+  background: #FF82AC;
+}
+
+.accounts-chart-frame {
+  width: 100%;
+  height: 100%;
+  min-height: 180px;
+  flex: 1 1 auto;
+}
+
+.accounts-chart {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.accounts-invoices-card {
+  padding: 18px 20px;
+  min-height: 0;
+}
+
+.accounts-invoices-list {
+  display: grid;
+  gap: 14px;
+}
+
+.accounts-invoice-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.accounts-invoice-row__icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+@media (max-width: 992px) {
+  .accounts-transaction-row {
+    grid-template-columns: minmax(0, 2fr) 1fr 1fr auto;
+  }
+
+  .accounts-chart-card__top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 560px) {
+  .accounts-summary-card {
+    min-height: 96px;
+    padding: 14px 16px;
+  }
+
+  .accounts-transaction-row {
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+  }
+
+  .accounts-transaction-row > div:nth-child(2),
+  .accounts-transaction-row > div:nth-child(3),
+  .accounts-transaction-row > div:nth-child(4) {
+    display: none;
+  }
+
+  .accounts-my-card {
+    min-height: 215px;
+  }
+
+  .accounts-chart-frame {
+    height: 160px;
+  }
+}

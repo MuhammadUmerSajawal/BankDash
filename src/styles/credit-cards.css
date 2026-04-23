@@ -1,0 +1,208 @@
+.credit-cards-page {
+  width: 100%;
+  padding: 0;
+}
+
+.credit-cards-page__card {
+  min-height: 190px;
+}
+
+.credit-cards-stats-card {
+  padding: 18px 20px 20px;
+  height: auto;
+  align-self: flex-start;
+}
+
+.credit-cards-stats-card__chart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.credit-cards-donut {
+  width: 190px;
+  height: 190px;
+  display: block;
+}
+
+.credit-cards-stats-card__legend {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 14px;
+  padding: 0 8px;
+}
+
+.credit-cards-stats-card__legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--light-blue);
+  font-size: 0.8rem;
+}
+
+.credit-cards-stats-card__legend-item span {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  display: inline-block;
+}
+
+.credit-cards-list-card {
+  padding: 16px 20px;
+}
+
+.credit-cards-list-card.is-selected {
+  box-shadow: 0 0 0 2px rgba(24, 20, 243, 0.08), 0 10px 24px rgba(15, 23, 42, 0.06) !important;
+}
+
+.credit-cards-list-row {
+  display: grid;
+  grid-template-columns: 52px repeat(4, minmax(0, 1fr)) auto;
+  gap: 18px;
+  align-items: center;
+}
+
+.credit-cards-list-row__icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.credit-cards-list-row__link {
+  padding: 0 !important;
+  margin: 0 !important;
+  font-size: 0.8rem !important;
+  font-weight: 600 !important;
+  color: var(--primary-blue) !important;
+  white-space: nowrap;
+}
+
+.credit-cards-form-card {
+  padding: 22px 20px 24px;
+}
+
+.credit-cards-form-card__copy {
+  max-width: 620px;
+  line-height: 1.75;
+}
+
+.credit-cards-form-card__field {
+  min-height: 46px;
+  border-radius: 12px !important;
+  border-color: #dfe7f5 !important;
+  color: var(--light-blue) !important;
+  font-size: 0.9rem !important;
+  box-shadow: none !important;
+}
+
+.credit-cards-form-card__field:focus {
+  border-color: #c7d7f1 !important;
+  box-shadow: none !important;
+}
+
+.credit-cards-form-card__field::placeholder {
+  color: #a9b8d3 !important;
+}
+
+.credit-cards-form-card__date-wrap {
+  position: relative;
+}
+
+.credit-cards-form-card__date-icon {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #8ba3cb;
+  pointer-events: none;
+}
+
+.credit-cards-form-card__submit {
+  border: 0 !important;
+  border-radius: 10px !important;
+  background: #1814F3 !important;
+  min-width: 160px;
+  padding: 12px 28px !important;
+  font-weight: 600 !important;
+}
+
+.credit-cards-settings-card {
+  padding: 18px 20px;
+}
+
+.credit-cards-settings-list {
+  display: grid;
+  gap: 18px;
+}
+
+.credit-cards-settings-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 0;
+}
+
+.credit-cards-settings-row__icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.credit-cards-settings-row.is-active {
+  transform: translateX(4px);
+}
+
+@media (max-width: 1200px) {
+  .credit-cards-list-row {
+    grid-template-columns: 52px repeat(3, minmax(0, 1fr)) auto;
+  }
+
+  .credit-cards-list-row > div:nth-child(5) {
+    display: none;
+  }
+}
+
+@media (max-width: 992px) {
+  .credit-cards-list-row {
+    grid-template-columns: 52px repeat(2, minmax(0, 1fr)) auto;
+  }
+
+  .credit-cards-list-row > div:nth-child(4) {
+    display: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .credit-cards-page__card {
+    min-height: 215px;
+  }
+
+  .credit-cards-stats-card__legend {
+    grid-template-columns: 1fr;
+  }
+
+  .credit-cards-list-row {
+    grid-template-columns: 52px 1fr;
+    gap: 12px;
+  }
+
+  .credit-cards-list-row > div:nth-child(3),
+  .credit-cards-list-row > div:nth-child(4),
+  .credit-cards-list-row > div:nth-child(5),
+  .credit-cards-list-row__link {
+    display: none;
+  }
+
+  .credit-cards-form-card__submit {
+    width: 100%;
+  }
+}

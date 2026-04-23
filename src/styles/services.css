@@ -1,0 +1,128 @@
+.services-page {
+  width: 100%;
+  padding: 0;
+}
+
+.services-highlight-card {
+  min-height: 108px;
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+}
+
+.services-highlight-card__icon {
+  width: 54px;
+  height: 54px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.services-list-card {
+  padding: 12px 16px;
+}
+
+.services-list-card.is-selected {
+  box-shadow: 0 0 0 2px rgba(24, 20, 243, 0.08), 0 10px 24px rgba(15, 23, 42, 0.06) !important;
+}
+
+.services-list-row {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1fr)) auto;
+  gap: 18px;
+  align-items: center;
+}
+
+.services-list-row__main {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.services-list-row__icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.services-list-row__action {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.services-list-row__button {
+  min-width: 112px;
+  border-radius: 999px !important;
+  border-color: #b7caeb !important;
+  color: #6b8dcb !important;
+  font-size: 0.78rem !important;
+  font-weight: 600 !important;
+  padding: 7px 16px !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.services-list-row__button.is-primary {
+  color: var(--primary-blue) !important;
+  border-color: var(--primary-blue) !important;
+}
+
+.services-list-row__button:hover,
+.services-list-row__button:focus {
+  background: #f4f8ff !important;
+  box-shadow: none !important;
+}
+
+@media (max-width: 1200px) {
+  .services-list-row {
+    grid-template-columns: minmax(0, 2fr) repeat(2, minmax(0, 1fr)) auto;
+  }
+
+  .services-list-row > div:nth-child(4) {
+    display: none;
+  }
+}
+
+@media (max-width: 992px) {
+  .services-list-row {
+    grid-template-columns: minmax(0, 1.8fr) 1fr auto;
+  }
+
+  .services-list-row > div:nth-child(3),
+  .services-list-row > div:nth-child(4) {
+    display: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .services-highlight-card {
+    min-height: 96px;
+    padding: 16px;
+  }
+
+  .services-list-card {
+    padding: 14px;
+  }
+
+  .services-list-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .services-list-row > div:nth-child(2),
+  .services-list-row > div:nth-child(3),
+  .services-list-row > div:nth-child(4) {
+    display: none;
+  }
+
+  .services-list-row__action {
+    justify-content: flex-start;
+  }
+}
