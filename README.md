@@ -53,8 +53,10 @@ The UI is designed to feel clean, modern, and product-oriented while keeping the
 
 ```text
 src/
+  app/
+    routes.jsx
   components/
-    common/
+    layout/
       Header.jsx
       Sidebar.jsx
   pages/
@@ -77,7 +79,6 @@ src/
     settings.css
   App.jsx
   index.jsx
-  routes.jsx
 ```
 
 ## Getting Started
@@ -119,7 +120,7 @@ This keeps the UI consistent while preventing one large stylesheet from becoming
 
 ## Routing
 
-Client-side routing is handled with `react-router-dom` via `src/routes.jsx`.
+Client-side routing is handled with `react-router-dom` via `src/app/routes.jsx`.
 
 Current routes:
 
@@ -137,6 +138,7 @@ Current routes:
 - This is a frontend project focused on UI and interaction behavior.
 - Data is currently mocked in the page components.
 - Charts are rendered with custom SVG rather than a chart library to keep the visuals flexible and lightweight.
+- The structure separates app wiring, layout shell, pages, and page-scoped styles for easier scaling.
 
 ## Future Improvements
 

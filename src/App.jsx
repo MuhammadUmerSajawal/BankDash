@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
-import Header from "./components/common/Header";
-import Navbar from "./components/common/Sidebar";
-import { appRoutes, defaultRoute } from "./routes.jsx";
+import Header from "./components/layout/Header";
+import Navbar from "./components/layout/Sidebar";
+import { appRoutes, defaultRoute } from "./app/routes.jsx";
 
 function App() {
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);

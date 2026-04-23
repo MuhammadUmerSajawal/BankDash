@@ -1,11 +1,11 @@
-import Dashboard from "./pages/Dashboard";
-import AccountsPage from "./pages/AccountsPage";
-import TransactionsPage from "./pages/TransactionsPage";
-import InvestmentsPage from "./pages/InvestmentsPage";
-import CreditCardsPage from "./pages/CreditCardsPage";
-import LoansPage from "./pages/LoansPage";
-import ServicesPage from "./pages/ServicesPage";
-import SettingsPage from "./pages/SettingsPage";
+import Dashboard from "../pages/Dashboard";
+import AccountsPage from "../pages/AccountsPage";
+import TransactionsPage from "../pages/TransactionsPage";
+import InvestmentsPage from "../pages/InvestmentsPage";
+import CreditCardsPage from "../pages/CreditCardsPage";
+import LoansPage from "../pages/LoansPage";
+import ServicesPage from "../pages/ServicesPage";
+import SettingsPage from "../pages/SettingsPage";
 
 export const appRoutes = [
   {
