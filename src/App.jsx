@@ -26,7 +26,7 @@ function App() {
           onMenuClick={() => setIsMobileSidebarOpen((open) => !open)}
         />
 
-        <div className="content__body">
+        <div key={location.pathname} className="content__body route-shell">
           <Routes>
             {appRoutes.map((route) => (
               <Route key={route.path} path={route.path} element={route.element} />

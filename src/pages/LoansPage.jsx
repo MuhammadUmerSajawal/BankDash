@@ -12,7 +12,7 @@ const loanSummary = [
 function LoansPage() {
   return (
     <Container fluid className="content__body">
-      <Row className="mb-4">
+      <Row className="mb-4 motion-section motion-delay-1">
         {loanSummary.map((item, i) => (
           <Col lg={3} sm={6} key={i} className="mb-3">
              <Card className="dashboard-panel border-0">
@@ -30,6 +30,7 @@ function LoansPage() {
         ))}
       </Row>
 
+      <div className="motion-section motion-delay-2">
       <h2 className="fs-4 fw-bold mb-3" style={{ color: '#232b5d' }}>Active Loans Overview</h2>
       <Card className="dashboard-panel border-0 p-0 overflow-hidden">
         <Table responsive hover className="m-0">
@@ -65,6 +66,7 @@ function LoansPage() {
           </tbody>
         </Table>
       </Card>
+      </div>
     </Container>
   );
 }

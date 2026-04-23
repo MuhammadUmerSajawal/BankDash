@@ -58,7 +58,7 @@ function SettingsPage() {
 
   return (
     <Container fluid className="settings-page">
-      <Card className="dashboard-panel border-0 shadow-sm settings-card">
+      <Card className="dashboard-panel border-0 shadow-sm settings-card motion-section motion-delay-1">
         <div className="settings-tabs" role="tablist" aria-label="Settings sections">
           {tabs.map((tab) => (
             <button

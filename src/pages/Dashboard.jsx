@@ -230,7 +230,7 @@ function Dashboard() {
   return (
     <Container fluid className="dashboard-page px-0 py-0" style={{ backgroundColor: '#F5F7FA' }}>
       {/* Top Row: Cards and Transactions */}
-      <Row className="mb-4 gx-4">
+      <Row className="mb-4 gx-4 motion-section motion-delay-1">
         <Col lg={8}>
           <div className="d-flex justify-content-between align-items-center mb-3">
             <h2 className="fs-5 fw-bold m-0" style={{ color: '#343C6A' }}>My Cards</h2>
@@ -316,7 +316,7 @@ function Dashboard() {
       </Row>
 
       {/* Middle Row: Charts */}
-      <Row className="mb-4 gx-4">
+      <Row className="mb-4 gx-4 motion-section motion-delay-2">
         <Col lg={8} className="d-flex flex-column">
           <h2 className="fs-5 fw-bold mb-3" style={{ color: '#343C6A' }}>Weekly Activity</h2>
           <Card className="dashboard-panel border-0 shadow-sm p-4 dashboard-panel--chart" style={{ height: '350px', overflow: 'hidden' }}>
@@ -340,7 +340,7 @@ function Dashboard() {
       </Row>
 
       {/* Bottom Row: Quick Transfer and Balance History */}
-      <Row className="gx-4">
+      <Row className="gx-4 motion-section motion-delay-3">
         <Col lg={4} className="d-flex flex-column">
           <h2 className="fs-5 fw-bold mb-3" style={{ color: '#343C6A' }}>Quick Transfer</h2>
           <Card className="dashboard-panel border-0 shadow-sm p-4 d-flex flex-column justify-content-between" style={{ height: '230px' }}>

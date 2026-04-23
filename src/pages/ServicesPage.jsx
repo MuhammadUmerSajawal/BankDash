@@ -127,7 +127,7 @@ function ServicesPage() {
 
   return (
     <Container fluid className="services-page">
-      <Row className="g-4 mb-4">
+      <Row className="g-4 mb-4 motion-section motion-delay-1">
         {highlights.map((item) => (
           <Col md={4} key={item.title}>
             <Card className="dashboard-panel border-0 shadow-sm services-highlight-card h-100">
@@ -145,7 +145,7 @@ function ServicesPage() {
         ))}
       </Row>
 
-      <section>
+      <section className="motion-section motion-delay-2">
         <h2 className="fs-5 fw-bold mb-3" style={{ color: "#343C6A" }}>Bank Services List</h2>
         <div className="d-grid gap-3">
           {services.map((service, index) => (

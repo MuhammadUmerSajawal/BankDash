@@ -148,7 +148,7 @@ function MonthlyRevenueChart() {
 function InvestmentsPage() {
   return (
     <Container fluid className="investments-page">
-      <Row className="g-4 mb-4">
+      <Row className="g-4 mb-4 motion-section motion-delay-1">
         {summaryData.map((item) => (
           <Col md={4} key={item.label}>
             <Card className="dashboard-panel border-0 shadow-sm investments-summary-card h-100">
@@ -166,7 +166,7 @@ function InvestmentsPage() {
         ))}
       </Row>
 
-      <Row className="g-4 mb-4">
+      <Row className="g-4 mb-4 motion-section motion-delay-2">
         <Col md={6}>
           <h2 className="fs-5 fw-bold mb-3" style={{ color: "#343C6A" }}>Yearly Total Investment</h2>
           <Card className="dashboard-panel border-0 shadow-sm investments-chart-card">
@@ -185,7 +185,7 @@ function InvestmentsPage() {
         </Col>
       </Row>
 
-      <Row className="g-4">
+      <Row className="g-4 motion-section motion-delay-3">
         <Col lg={8}>
           <h2 className="fs-5 fw-bold mb-3" style={{ color: "#343C6A" }}>My Investment</h2>
           <div className="d-grid gap-3">

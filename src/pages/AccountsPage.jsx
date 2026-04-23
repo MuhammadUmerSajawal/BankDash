@@ -121,7 +121,7 @@ function DebitCreditChart() {
 function AccountsPage() {
   return (
     <Container fluid className="accounts-page">
-      <Row className="g-4 mb-4">
+      <Row className="g-4 mb-4 motion-section motion-delay-1">
         {summaryCards.map((card) => (
           <Col lg={3} sm={6} key={card.title}>
             <Card className="dashboard-panel border-0 shadow-sm accounts-summary-card h-100">
@@ -142,7 +142,7 @@ function AccountsPage() {
         ))}
       </Row>
 
-      <Row className="g-4 mb-4">
+      <Row className="g-4 mb-4 motion-section motion-delay-2">
         <Col lg={8}>
           <h2 className="fs-5 fw-bold mb-3" style={{ color: "#343C6A" }}>Last Transaction</h2>
           <Card className="dashboard-panel border-0 shadow-sm accounts-transactions-card">
@@ -204,7 +204,7 @@ function AccountsPage() {
         </Col>
       </Row>
 
-      <Row className="g-4">
+      <Row className="g-4 motion-section motion-delay-3">
         <Col lg={8}>
           <h2 className="fs-5 fw-bold mb-3" style={{ color: "#343C6A" }}>Debit & Credit Overview</h2>
           <Card className="dashboard-panel border-0 shadow-sm accounts-chart-card">

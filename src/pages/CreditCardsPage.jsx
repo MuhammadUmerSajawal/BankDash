@@ -80,7 +80,7 @@ function CreditCardsPage() {
 
   return (
     <Container fluid className="credit-cards-page">
-      <section className="mb-4">
+      <section className="mb-4 motion-section motion-delay-1">
         <h2 className="fs-5 fw-bold mb-3" style={{ color: "#343C6A" }}>My Cards</h2>
         <Row className="g-4">
           {creditCards.map((card, index) => (
@@ -130,7 +130,7 @@ function CreditCardsPage() {
         </Row>
       </section>
 
-      <Row className="g-4 mb-4">
+      <Row className="g-4 mb-4 motion-section motion-delay-2">
         <Col lg={4}>
           <h2 className="fs-5 fw-bold mb-3" style={{ color: "#343C6A" }}>Card Expense Statistics</h2>
           <Card className="dashboard-panel border-0 shadow-sm credit-cards-stats-card">
@@ -181,7 +181,7 @@ function CreditCardsPage() {
         </Col>
       </Row>
 
-      <Row className="g-4">
+      <Row className="g-4 motion-section motion-delay-3">
         <Col lg={8}>
           <h2 className="fs-5 fw-bold mb-3" style={{ color: "#343C6A" }}>Add New Card</h2>
           <Card className="dashboard-panel border-0 shadow-sm credit-cards-form-card">

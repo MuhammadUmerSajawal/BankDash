@@ -158,7 +158,7 @@ function TransactionsPage() {
 
   return (
     <Container fluid className="transactions-page">
-      <Row className="transactions-page__top g-4 mb-4">
+      <Row className="transactions-page__top g-4 mb-4 motion-section motion-delay-1">
         <Col lg={8}>
           <div className="d-flex justify-content-between align-items-center mb-3">
             <h2 className="fs-5 fw-bold m-0" style={{ color: "#343C6A" }}>My Cards</h2>
@@ -224,7 +224,7 @@ function TransactionsPage() {
         </Col>
       </Row>
 
-      <Row>
+      <Row className="motion-section motion-delay-2">
         <Col xs={12}>
           <h2 className="fs-5 fw-bold mb-3" style={{ color: "#343C6A" }}>Recent Transactions</h2>
 
