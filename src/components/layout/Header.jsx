@@ -85,7 +85,7 @@ function Header({ title, onMenuClick }) {
           </Button>
 
           {/* Page title – centered on mobile, left on desktop */}
-          <Navbar.Brand className="fw-bold fs-4 m-0 flex-grow-1 page-header__title" style={{ color: '#232b5d' }}>
+          <Navbar.Brand className="fw-bold m-0 flex-grow-1 page-header__title">
             {title}
           </Navbar.Brand>
 
@@ -145,7 +145,7 @@ function Header({ title, onMenuClick }) {
           </div>
 
           {/* Avatar – always visible */}
-          <div className="rounded-circle overflow-hidden flex-shrink-0 page-header__avatar" style={{ width: '38px', height: '38px' }}>
+          <div className="rounded-circle overflow-hidden flex-shrink-0 page-header__avatar">
             <img
               src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
               alt="Profile"
