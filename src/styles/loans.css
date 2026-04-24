@@ -1,0 +1,104 @@
+/* Loans Page Styles */
+.loans-summary-row {
+  margin-bottom: 24px;
+}
+
+/* ── Mobile: horizontal-scroll cards (same peek as Dashboard) ─── */
+@media (max-width: 767px) {
+  /* Horizontal scroll row */
+  .loans-summary-row {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto;
+    overflow-y: hidden;
+    margin-left: 0;
+    margin-right: 0;
+    padding-bottom: 12px;
+    gap: 12px;
+    scroll-snap-type: x mandatory;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .loans-summary-row::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* ~82% width so the second card peeks from the right */
+  .loans-summary-row__item {
+    flex: 0 0 82% !important;
+    width: 82% !important;
+    max-width: 82% !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    scroll-snap-align: start;
+    margin-bottom: 0 !important;
+  }
+
+  .loans-summary-card {
+    min-height: 96px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+  }
+
+  /* ── Loans Table: 3-column mobile layout ─── */
+  .loans-table-card {
+    padding: 0 !important;
+  }
+
+  .loans-table th,
+  .loans-table td {
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+    font-size: 0.85rem !important;
+  }
+
+  /* Hide non-essential columns on mobile */
+  .loans-col-id,
+  .loans-col-duration,
+  .loans-col-rate,
+  .loans-col-installment {
+    display: none !important;
+  }
+
+  .loans-col-money,
+  .loans-col-left {
+    width: auto !important;
+    padding-left: 16px !important;
+  }
+
+  .loans-col-status {
+    width: 100px !important;
+    text-align: right !important;
+    padding-right: 16px !important;
+  }
+
+  .loans-repay-btn {
+    border-radius: 999px !important;
+    padding: 4px 16px !important;
+    font-size: 0.75rem !important;
+    color: var(--primary-blue) !important;
+    border-color: var(--primary-blue) !important;
+  }
+
+  .loans-total-row td {
+    border-top: 1px solid #f1f5fb !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .loans-summary-row__item {
+    flex: 0 0 80% !important;
+    width: 80% !important;
+    max-width: 80% !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .loans-summary-row__item {
+    flex: 0 0 78% !important;
+    width: 78% !important;
+    max-width: 78% !important;
+  }
+}

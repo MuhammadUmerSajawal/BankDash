@@ -160,9 +160,33 @@
 }
 
 @media (max-width: 560px) {
+  /* 2×2 summary card grid — compact styling */
   .accounts-summary-card {
-    min-height: 96px;
-    padding: 14px 16px;
+    min-height: 84px;
+    padding: 12px 14px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .accounts-summary-card .d-flex {
+    gap: 10px !important;
+    align-items: center;
+    flex-direction: row;
+  }
+
+  .accounts-summary-card__icon {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+  }
+
+  .accounts-summary-card .text-secondary.small {
+    font-size: 0.72rem !important;
+  }
+
+  .accounts-summary-card .fw-bold.fs-4 {
+    font-size: 1rem !important;
   }
 
   .accounts-transaction-row {

@@ -164,9 +164,9 @@ function TransactionsPage() {
             <h2 className="fs-5 fw-bold m-0" style={{ color: "#343C6A" }}>My Cards</h2>
             <Nav.Link as={Link} to="/credit-cards" className="fw-bold small px-0" style={{ color: "#343C6A" }}>+ Add Card</Nav.Link>
           </div>
-          <Row className="g-4">
+          <Row className="g-4 transactions-cards-row">
             {cards.map((card) => (
-              <Col key={card.id} md={6}>
+              <Col key={card.id} md={6} className="transactions-cards-row__item">
                 <div className={`bank-card bank-card--${card.variant} mb-0`}>
                   <div className="d-flex justify-content-between align-items-center mb-4">
                     <div>

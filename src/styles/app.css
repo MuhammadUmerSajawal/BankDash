@@ -118,6 +118,48 @@ select::placeholder {
   transform-origin: top center;
 }
 
+.page-header__inner {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+  flex-direction: row; /* desktop: single row */
+}
+
+.page-header__title-row {
+  min-width: 0;
+}
+
+.page-header__title {
+  line-height: 1;
+}
+
+.page-header__actions {
+  gap: 0;
+}
+
+.page-header__menu-button {
+  color: var(--dark-blue);
+}
+
+.page-header__avatar {
+  flex-shrink: 0;
+}
+
+.page-header__search-desktop {
+  margin-bottom: 0;
+}
+
+.page-header__search-mobile {
+  width: 100%;
+}
+
+.page-header__search-mobile .header-popover--search {
+  left: 0;
+  right: 0;
+  min-width: 0;
+}
+
 .dashboard-panel {
   background: #fff;
   border-radius: 25px;
@@ -403,5 +445,102 @@ button:active,
 
   .app--sidebar-open .app__overlay {
     display: block;
+  }
+
+  .content__body {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 767px) {
+  .content__body {
+    padding: 12px;
+  }
+
+  /* ── Header: two-row column on mobile ─────────────────────────── */
+  .page-header {
+    padding: 0 !important;
+  }
+
+  .page-header__inner {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Row 1: hamburger | title (centered) | avatar */
+  .page-header__top-row {
+    display: flex;
+    align-items: center;
+    padding: 10px 14px;
+    gap: 10px;
+  }
+
+  .page-header__menu-button {
+    width: 28px !important;
+    height: 28px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-right: 0 !important;
+    flex-shrink: 0;
+  }
+
+  .page-header__title {
+    flex-grow: 1;
+    text-align: center !important;
+    font-size: 1.05rem !important;
+    white-space: nowrap;
+  }
+
+  .page-header__avatar {
+    width: 32px !important;
+    height: 32px !important;
+    flex-shrink: 0;
+  }
+
+  /* Row 2: full-width search bar below the title row */
+  .page-header__search-mobile {
+    width: 100%;
+    padding: 0 14px 10px;
+  }
+
+  .page-header__search-mobile > form > div {
+    min-height: 40px;
+    border-radius: 40px;
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+    background-color: #F5F7FA !important;
+  }
+
+  .page-header__search-mobile .form-control {
+    font-size: 0.8rem !important;
+  }
+
+  .header-popover {
+    max-width: min(100vw - 32px, 320px);
+  }
+
+  .header-popover--search {
+    width: 100%;
+    left: 0;
+    right: 0;
+  }
+}
+
+@media (max-width: 420px) {
+  .content__body {
+    padding: 10px;
+  }
+
+  .page-header__inner {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+
+  .page-header__actions {
+    top: 10px;
+    right: 10px;
   }
 }

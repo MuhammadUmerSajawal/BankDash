@@ -206,3 +206,50 @@
     width: 100%;
   }
 }
+
+/* ── Mobile: horizontal-scroll cards (same peek as Dashboard) ─── */
+@media (max-width: 767px) {
+  /* Horizontal scroll row */
+  .credit-cards-row {
+    flex-wrap: nowrap !important;
+    overflow-x: auto;
+    overflow-y: hidden;
+    margin-left: 0;
+    margin-right: 0;
+    padding-bottom: 6px;
+    gap: 12px;
+    scroll-snap-type: x mandatory;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .credit-cards-row::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* ~82% width so the second card peeks from the right */
+  .credit-cards-row__item {
+    flex: 0 0 82% !important;
+    width: 82% !important;
+    max-width: 82% !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    scroll-snap-align: start;
+  }
+}
+
+@media (max-width: 560px) {
+  .credit-cards-row__item {
+    flex: 0 0 80% !important;
+    width: 80% !important;
+    max-width: 80% !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .credit-cards-row__item {
+    flex: 0 0 78% !important;
+    width: 78% !important;
+    max-width: 78% !important;
+  }
+}

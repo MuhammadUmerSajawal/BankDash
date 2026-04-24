@@ -123,7 +123,7 @@ function AccountsPage() {
     <Container fluid className="accounts-page">
       <Row className="g-4 mb-4 motion-section motion-delay-1">
         {summaryCards.map((card) => (
-          <Col lg={3} sm={6} key={card.title}>
+          <Col lg={3} sm={6} xs={6} key={card.title}>
             <Card className="dashboard-panel border-0 shadow-sm accounts-summary-card h-100">
               <div className="d-flex align-items-center gap-3">
                 <div

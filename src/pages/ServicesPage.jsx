@@ -127,17 +127,17 @@ function ServicesPage() {
 
   return (
     <Container fluid className="services-page">
-      <Row className="g-4 mb-4 motion-section motion-delay-1">
+      <Row className="g-4 mb-4 motion-section motion-delay-1 services-highlights-row">
         {highlights.map((item) => (
-          <Col md={4} key={item.title}>
+          <Col md={4} key={item.title} className="services-highlights-row__item">
             <Card className="dashboard-panel border-0 shadow-sm services-highlight-card h-100">
-              <div className="d-flex align-items-center gap-3">
+              <div className="d-flex align-items-center gap-3 h-100">
                 <div className="services-highlight-card__icon" style={{ backgroundColor: item.bg, color: item.color }}>
                   <item.icon size={22} />
                 </div>
-                <div>
+                <div className="d-flex flex-column justify-content-center">
                   <div className="fw-semibold" style={{ color: "#232B5D" }}>{item.title}</div>
-                  <div className="text-secondary small">{item.subtitle}</div>
+                  <div className="text-secondary small" style={{ fontSize: "0.75rem" }}>{item.subtitle}</div>
                 </div>
               </div>
             </Card>
@@ -155,38 +155,33 @@ function ServicesPage() {
                   <div className="services-list-row__icon" style={{ backgroundColor: service.bg, color: service.color }}>
                     <service.icon size={20} />
                   </div>
-                  <div>
-                    <div className="fw-semibold small" style={{ color: "#232B5D" }}>{service.title}</div>
-                    <div className="text-secondary" style={{ fontSize: "0.75rem" }}>{service.description}</div>
+                  <div className="d-flex flex-column justify-content-center">
+                    <div className="fw-semibold" style={{ color: "#232B5D" }}>{service.title}</div>
+                    <div className="text-secondary" style={{ fontSize: "0.75rem", lineHeight: "1.2" }}>{service.description}</div>
                   </div>
                 </div>
-                <div>
+                <div className="services-list-col-meta">
                   <div className="small" style={{ color: "#232B5D" }}>{service.metaA}</div>
                   <div className="text-secondary" style={{ fontSize: "0.75rem" }}>{service.metaADetail}</div>
                 </div>
-                <div>
+                <div className="services-list-col-meta">
                   <div className="small" style={{ color: "#232B5D" }}>{service.metaB}</div>
                   <div className="text-secondary" style={{ fontSize: "0.75rem" }}>{service.metaBDetail}</div>
                 </div>
-                <div>
+                <div className="services-list-col-meta">
                   <div className="small" style={{ color: "#232B5D" }}>{service.metaC}</div>
                   <div className="text-secondary" style={{ fontSize: "0.75rem" }}>{service.metaCDetail}</div>
                 </div>
                 <div className="services-list-row__action">
-                  <Button
-                    variant="outline-primary"
-                    className={`services-list-row__button ${service.primary ? "is-primary" : ""}`}
+                  <button
+                    type="button"
+                    className="services-view-details-btn border-0 bg-transparent px-0"
                     onClick={() => setActiveServiceIndex(index)}
                   >
-                    {activeServiceIndex === index ? "Viewing" : "View Details"}
-                  </Button>
+                    View Details
+                  </button>
                 </div>
               </div>
-              {activeServiceIndex === index ? (
-                <div className="page-feedback page-feedback--muted mt-3 mb-0">
-                  {service.title} selected. Review options and continue from this service.
-                </div>
-              ) : null}
             </Card>
           ))}
         </div>

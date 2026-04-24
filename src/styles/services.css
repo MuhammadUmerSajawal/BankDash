@@ -105,24 +105,90 @@
   .services-highlight-card {
     min-height: 96px;
     padding: 16px;
+    display: flex;
+    align-items: center;
   }
 
-  .services-list-card {
-    padding: 14px;
-  }
-
-  .services-list-row {
-    grid-template-columns: 1fr;
+  /* ── Mobile: horizontal-scroll cards (same peek as Dashboard) ─── */
+  .services-highlights-row {
+    flex-wrap: nowrap !important;
+    overflow-x: auto;
+    overflow-y: hidden;
+    margin-left: 0;
+    margin-right: 0;
+    padding-bottom: 6px;
     gap: 12px;
+    scroll-snap-type: x mandatory;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 
-  .services-list-row > div:nth-child(2),
-  .services-list-row > div:nth-child(3),
-  .services-list-row > div:nth-child(4) {
+  .services-highlights-row::-webkit-scrollbar {
     display: none;
   }
 
+  .services-highlights-row__item {
+    flex: 0 0 82% !important;
+    width: 82% !important;
+    max-width: 82% !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    scroll-snap-align: start;
+  }
+
+  /* ── Services List: mobile 3-segment layout ─── */
+  .services-list-card {
+    padding: 12px 14px;
+    border-radius: 16px;
+  }
+
+  .services-list-row {
+    grid-template-columns: 1fr auto !important;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .services-list-row__main {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .services-list-row__icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+  }
+
+  .services-list-col-meta {
+    display: none !important;
+  }
+
   .services-list-row__action {
-    justify-content: flex-start;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .services-view-details-btn {
+    color: var(--primary-blue) !important;
+    font-size: 0.8rem !important;
+    font-weight: 600 !important;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 560px) {
+  .services-highlights-row__item {
+    flex: 0 0 80% !important;
+    width: 80% !important;
+    max-width: 80% !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .services-highlights-row__item {
+    flex: 0 0 78% !important;
+    width: 78% !important;
+    max-width: 78% !important;
   }
 }

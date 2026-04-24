@@ -2,6 +2,34 @@
   width: 100%;
 }
 
+.dashboard-section {
+  align-items: stretch;
+}
+
+.dashboard-section__header {
+  gap: 12px;
+}
+
+.dashboard-cards-row__item {
+  display: flex;
+}
+
+.dashboard-cards-row__item .bank-card {
+  width: 100%;
+}
+
+.dashboard-transfer-list {
+  gap: 16px;
+}
+
+.dashboard-transfer-person {
+  min-width: 0;
+}
+
+.dashboard-transfer-form .input-group {
+  flex: 1 1 auto;
+}
+
 .dashboard-panel--chart {
   display: flex;
   flex-direction: column;
@@ -57,6 +85,10 @@
 }
 
 @media (max-width: 992px) {
+  .dashboard-section {
+    row-gap: 24px;
+  }
+
   .dashboard-chart-frame--bars {
     height: 220px;
   }
@@ -66,23 +98,271 @@
   }
 }
 
-@media (max-width: 560px) {
+@media (max-width: 767px) {
+  .dashboard-page {
+    padding-top: 2px !important;
+  }
+
+  .dashboard-section {
+    margin-bottom: 20px !important;
+    row-gap: 0;
+  }
+
+  /* On mobile, force each section col to be full-width and stacked */
+  .dashboard-section > [class*="col-"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 0 0 100% !important;
+    margin-bottom: 20px;
+  }
+
+  .dashboard-section__header h2,
+  .dashboard-section > [class*="col-"] > h2 {
+    font-size: 1rem !important;
+    margin-bottom: 10px !important;
+  }
+
+  /* --- Cards horizontal scroll row --- */
+  .dashboard-cards-row {
+    flex-wrap: nowrap !important;
+    overflow-x: auto;
+    overflow-y: hidden;
+    margin-left: 0;
+    margin-right: 0;
+    padding-bottom: 6px;
+    gap: 12px;
+    scroll-snap-type: x mandatory;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .dashboard-cards-row::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Each card ~82% of viewport so 1.5 cards are visible (peek effect) */
+  .dashboard-cards-row__item {
+    flex: 0 0 82% !important;
+    width: 82% !important;
+    max-width: 82% !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    scroll-snap-align: start;
+  }
+
+  /* --- Panel & card sizing --- */
+  .dashboard-panel {
+    border-radius: 20px;
+    padding: 16px;
+  }
+
+  .bank-card {
+    min-height: 160px;
+    border-radius: 20px;
+    padding: 18px;
+  }
+
+  .dashboard-cards-row__item .bank-card > .d-flex:first-child {
+    margin-bottom: 12px !important;
+  }
+
+  .dashboard-cards-row__item .bank-card > .d-flex:nth-child(2) {
+    gap: 16px;
+  }
+
+  .bank-card .fs-4 {
+    font-size: 1.2rem !important;
+  }
+
+  .bank-card .fs-5 {
+    font-size: 0.82rem !important;
+    letter-spacing: 1.5px !important;
+  }
+
+  .dashboard-cards-row__item .bank-card .small {
+    font-size: 0.65rem !important;
+  }
+
+  .dashboard-cards-row__item .bank-card__label {
+    font-size: 0.56rem !important;
+  }
+
+  .dashboard-cards-row__item .bank-card .mt-4 {
+    margin-top: auto !important;
+  }
+
+  .dashboard-cards-row__item .bank-card .pt-3 {
+    padding-top: 10px !important;
+  }
+
+  /* --- Recent Transactions panel --- */
+  .dashboard-section__transactions .dashboard-panel {
+    min-height: auto !important;
+    padding: 16px;
+  }
+
+  .dashboard-section__transactions .rounded-circle {
+    width: 42px !important;
+    height: 42px !important;
+  }
+
+  .dashboard-section__transactions .fw-bold {
+    font-size: 0.84rem !important;
+  }
+
+  .dashboard-section__transactions .text-secondary {
+    font-size: 0.72rem !important;
+  }
+
+  /* --- Charts --- */
+  .dashboard-panel--chart {
+    height: auto !important;
+  }
+
   .dashboard-chart__legend {
     justify-content: flex-start !important;
     gap: 12px !important;
-    margin-bottom: 16px !important;
+    margin-bottom: 14px !important;
+    font-size: 0.72rem !important;
   }
 
   .dashboard-chart-frame--bars {
-    height: 200px;
+    height: 190px;
   }
 
   .dashboard-chart-frame--pie {
-    height: 220px;
+    height: 210px;
     padding: 0;
   }
 
   .dashboard-chart-frame--line {
-    height: 130px;
+    height: 120px;
+  }
+
+  /* --- Bottom panels --- */
+  .dashboard-section--bottom .dashboard-panel {
+    height: auto !important;
+  }
+
+  /* --- Quick Transfer --- */
+  .dashboard-transfer-list {
+    align-items: flex-start !important;
+    gap: 10px;
+    margin-bottom: 16px !important;
+  }
+
+  .dashboard-transfer-person img {
+    width: 42px !important;
+    height: 42px !important;
+    margin-bottom: 6px !important;
+  }
+
+  .dashboard-transfer-person .fw-bold {
+    font-size: 0.7rem !important;
+    line-height: 1.2;
+  }
+
+  .dashboard-transfer-person .text-secondary {
+    font-size: 0.62rem !important;
+  }
+
+  .dashboard-transfer-form {
+    flex-wrap: wrap;
+    gap: 8px !important;
+    align-items: stretch !important;
+  }
+
+  .dashboard-transfer-form .whitespace-nowrap {
+    flex: 0 0 100%;
+    font-size: 0.82rem;
+  }
+
+  .dashboard-transfer-form .input-group {
+    width: 100%;
+    flex: 1 1 100%;
+  }
+
+  .dashboard-transfer-form .form-control {
+    min-width: 0;
+    font-size: 0.82rem;
+  }
+
+  .dashboard-transfer-form .btn {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    font-size: 0.78rem !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .dashboard-page .row {
+    --bs-gutter-x: 0;
+  }
+
+  .dashboard-section__header {
+    margin-bottom: 10px !important;
+  }
+
+  .dashboard-section__cards .dashboard-section__header {
+    align-items: center !important;
+  }
+
+  .dashboard-section__cards .dashboard-section__header .small {
+    font-size: 0.68rem !important;
+  }
+
+  /* Peek: show ~1.5 cards at 375px */
+  .dashboard-cards-row__item {
+    flex: 0 0 80% !important;
+    width: 80% !important;
+    max-width: 80% !important;
+  }
+
+  .dashboard-section__transactions .d-flex.align-items-center.mb-3.last-child-mb-0,
+  .dashboard-section__transactions .d-flex.align-items-center.mb-3 {
+    gap: 10px;
+  }
+
+  .dashboard-chart-frame--bars {
+    height: 170px;
+  }
+
+  .dashboard-chart-frame--pie {
+    height: 190px;
+  }
+
+  .dashboard-chart-frame--line {
+    height: 110px;
+  }
+}
+
+@media (max-width: 420px) {
+  .dashboard-section {
+    margin-bottom: 18px !important;
+  }
+
+  /* At 375px show exactly ~1.5 cards */
+  .dashboard-cards-row__item {
+    flex: 0 0 78% !important;
+    width: 78% !important;
+    max-width: 78% !important;
+  }
+
+  .bank-card {
+    min-height: 148px;
+    padding: 14px;
+  }
+
+  .dashboard-cards-row__item .bank-card > .d-flex:first-child {
+    margin-bottom: 10px !important;
+  }
+
+  .dashboard-cards-row__item .bank-card .fs-4 {
+    font-size: 1.1rem !important;
+  }
+
+  .dashboard-cards-row__item .bank-card .fs-5 {
+    font-size: 0.78rem !important;
+    letter-spacing: 1.2px !important;
   }
 }

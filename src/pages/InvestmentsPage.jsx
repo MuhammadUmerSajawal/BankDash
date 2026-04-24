@@ -1,12 +1,12 @@
 import React from "react";
 import { Card, Col, Container, Row, Table } from "react-bootstrap";
-import { HiOutlineArrowPath, HiOutlineCurrencyDollar, HiOutlineWallet } from "react-icons/hi2";
+import { HiOutlineArrowPath, HiOutlineBriefcase, HiOutlineChartPie } from "react-icons/hi2";
 import { SiApple, SiSamsung, SiTesla } from "react-icons/si";
 import "../styles/investments.css";
 
 const summaryData = [
-  { label: "Total Invested Amount", value: "$150,000", icon: HiOutlineWallet, bg: "#DCFAF8", color: "#16C9B8" },
-  { label: "Number of Investments", value: "1,250", icon: HiOutlineCurrencyDollar, bg: "#FFE0EB", color: "#FF82AC" },
+  { label: "Total Invested Amount", value: "$150,000", icon: HiOutlineBriefcase, bg: "#DCFAF8", color: "#16C9B8" },
+  { label: "Number of Investments", value: "1,250", icon: HiOutlineChartPie, bg: "#FFE0EB", color: "#FF82AC" },
   { label: "Rate of Return", value: "+5.80%", icon: HiOutlineArrowPath, bg: "#E7EDFF", color: "#396AFF" },
 ];
 
@@ -156,9 +156,9 @@ function InvestmentsPage() {
                 <div className="investments-summary-card__icon" style={{ backgroundColor: item.bg, color: item.color }}>
                   <item.icon size={24} />
                 </div>
-                <div>
-                  <div className="text-secondary small">{item.label}</div>
-                  <div className="fw-bold fs-4" style={{ color: "#232B5D" }}>{item.value}</div>
+                <div className="d-flex flex-column justify-content-center">
+                  <div className="text-secondary small mb-1" style={{ fontSize: "0.75rem", color: "#718EBF !important" }}>{item.label}</div>
+                  <div className="fw-bold fs-4" style={{ color: "#232B5D", lineHeight: "1.2" }}>{item.value}</div>
                 </div>
               </div>
             </Card>

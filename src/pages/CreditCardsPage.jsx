@@ -82,9 +82,9 @@ function CreditCardsPage() {
     <Container fluid className="credit-cards-page">
       <section className="mb-4 motion-section motion-delay-1">
         <h2 className="fs-5 fw-bold mb-3" style={{ color: "#343C6A" }}>My Cards</h2>
-        <Row className="g-4">
+        <Row className="g-4 credit-cards-row">
           {creditCards.map((card, index) => (
-            <Col xl={4} md={6} key={`${card.number}-${index}`}>
+            <Col xl={4} md={6} key={`${card.number}-${index}`} className="credit-cards-row__item">
               <div className={`bank-card bank-card--${card.variant} credit-cards-page__card mb-0`}>
                 <div className="d-flex justify-content-between align-items-center mb-4">
                   <div>

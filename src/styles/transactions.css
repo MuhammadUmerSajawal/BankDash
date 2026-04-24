@@ -211,3 +211,58 @@
     align-self: center;
   }
 }
+
+/* ── Mobile: horizontal-scroll cards (same peek as Dashboard) ─── */
+@media (max-width: 767px) {
+  /* Full-width stack for each top-section column */
+  .transactions-page__top > [class*="col-"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 0 0 100% !important;
+    margin-bottom: 20px;
+  }
+
+  /* Horizontal scroll row */
+  .transactions-cards-row {
+    flex-wrap: nowrap !important;
+    overflow-x: auto;
+    overflow-y: hidden;
+    margin-left: 0;
+    margin-right: 0;
+    padding-bottom: 6px;
+    gap: 12px;
+    scroll-snap-type: x mandatory;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .transactions-cards-row::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* ~82% width so the second card peeks from the right */
+  .transactions-cards-row__item {
+    flex: 0 0 82% !important;
+    width: 82% !important;
+    max-width: 82% !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    scroll-snap-align: start;
+  }
+}
+
+@media (max-width: 560px) {
+  .transactions-cards-row__item {
+    flex: 0 0 80% !important;
+    width: 80% !important;
+    max-width: 80% !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .transactions-cards-row__item {
+    flex: 0 0 78% !important;
+    width: 78% !important;
+    max-width: 78% !important;
+  }
+}

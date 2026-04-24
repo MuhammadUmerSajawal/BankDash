@@ -162,7 +162,7 @@ function BalanceHistoryChart() {
 
   return (
     <svg viewBox={`0 0 ${chartWidth} ${chartHeight}`} className="dashboard-chart dashboard-chart--line" preserveAspectRatio="none">
-      <g stroke="#F2F4F7" strokeWidth="1">
+      <g stroke="#b2b4b6ff" strokeWidth="1">
         {[0, 200, 400, 600, 800].map((value) => {
           const y = scaleY(value);
           return (
@@ -230,14 +230,14 @@ function Dashboard() {
   return (
     <Container fluid className="dashboard-page px-0 py-0" style={{ backgroundColor: '#F5F7FA' }}>
       {/* Top Row: Cards and Transactions */}
-      <Row className="mb-4 gx-4 motion-section motion-delay-1">
-        <Col lg={8}>
-          <div className="d-flex justify-content-between align-items-center mb-3">
+      <Row className="mb-4 gx-4 motion-section motion-delay-1 dashboard-section dashboard-section--top">
+        <Col lg={8} className="dashboard-section__cards">
+          <div className="d-flex justify-content-between align-items-center mb-3 dashboard-section__header">
             <h2 className="fs-5 fw-bold m-0" style={{ color: '#343C6A' }}>My Cards</h2>
             <Nav.Link as={Link} to="/credit-cards" className="fw-bold small px-0" style={{ color: '#343C6A' }}>See All</Nav.Link>
           </div>
-          <Row className="gx-4">
-            <Col md={6}>
+          <Row className="gx-4 dashboard-cards-row">
+            <Col md={6} className="dashboard-cards-row__item">
               <div className="bank-card bank-card--primary mb-0">
                 <div className="d-flex justify-content-between align-items-center mb-4">
                   <div>
@@ -262,7 +262,7 @@ function Dashboard() {
                 </div>
               </div>
             </Col>
-            <Col md={6}>
+            <Col md={6} className="dashboard-cards-row__item">
               <div className="bank-card bank-card--light mb-0 border-0 shadow-sm" style={{ backgroundColor: '#fff' }}>
                 <div className="d-flex justify-content-between align-items-center mb-4">
                   <div>
@@ -290,7 +290,7 @@ function Dashboard() {
           </Row>
         </Col>
 
-        <Col lg={4} className="d-flex flex-column">
+        <Col lg={4} className="d-flex flex-column dashboard-section__transactions">
           <h2 className="fs-5 fw-bold mb-3" style={{ color: '#343C6A' }}>Recent Transaction</h2>
           <Card className="dashboard-panel border-0 shadow-sm py-3 px-4 flex-grow-1" style={{ minHeight: '235px' }}>
              <div className="d-flex flex-column justify-content-center h-100">
@@ -316,7 +316,7 @@ function Dashboard() {
       </Row>
 
       {/* Middle Row: Charts */}
-      <Row className="mb-4 gx-4 motion-section motion-delay-2">
+      <Row className="mb-4 gx-4 motion-section motion-delay-2 dashboard-section dashboard-section--middle">
         <Col lg={8} className="d-flex flex-column">
           <h2 className="fs-5 fw-bold mb-3" style={{ color: '#343C6A' }}>Weekly Activity</h2>
           <Card className="dashboard-panel border-0 shadow-sm p-4 dashboard-panel--chart" style={{ height: '350px', overflow: 'hidden' }}>
@@ -340,16 +340,16 @@ function Dashboard() {
       </Row>
 
       {/* Bottom Row: Quick Transfer and Balance History */}
-      <Row className="gx-4 motion-section motion-delay-3">
+      <Row className="gx-4 motion-section motion-delay-3 dashboard-section dashboard-section--bottom">
         <Col lg={4} className="d-flex flex-column">
           <h2 className="fs-5 fw-bold mb-3" style={{ color: '#343C6A' }}>Quick Transfer</h2>
           <Card className="dashboard-panel border-0 shadow-sm p-4 d-flex flex-column justify-content-between" style={{ height: '230px' }}>
-             <div className="d-flex justify-content-between align-items-center mb-4">
+             <div className="d-flex justify-content-between align-items-center mb-4 dashboard-transfer-list">
                 {contacts.map((user, i) => (
                   <button
                     key={i}
                     type="button"
-                    className="text-center border-0 bg-transparent p-0"
+                    className="text-center border-0 bg-transparent p-0 dashboard-transfer-person"
                     onClick={() => setActiveContactIndex(i)}
                     aria-pressed={i === activeContactIndex}
                   >
@@ -368,7 +368,7 @@ function Dashboard() {
                   <HiOutlineChevronRight color="#718EBF" size={18} />
                 </button>
              </div>
-             <form className="d-flex align-items-center gap-3" onSubmit={handleTransfer}>
+             <form className="d-flex align-items-center gap-3 dashboard-transfer-form" onSubmit={handleTransfer}>
                 <span className="text-secondary small whitespace-nowrap">Write Amount</span>
                 <InputGroup className="bg-light rounded-pill overflow-hidden border-0">
                   <Form.Control type="text" placeholder="525.50" value={transferAmount} onChange={(event) => setTransferAmount(event.target.value)} className="bg-transparent border-0 px-3 py-2 small fw-bold" />
