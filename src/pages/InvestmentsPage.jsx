@@ -36,6 +36,14 @@ const yearlySeries = [
 import { ResponsiveLine } from '@nivo/line';
 
 function YearlyInvestmentChart() {
+  const [isMobile, setIsMobile] = React.useState(window.innerWidth < 768);
+
+  React.useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const data = [
     {
       id: "yearly",
@@ -44,10 +52,10 @@ function YearlyInvestmentChart() {
   ];
 
   return (
-    <div style={{ width: '100%', height: '250px' }}>
+    <div className="investments-chart-frame" style={{ width: '100%' }}>
       <ResponsiveLine
         data={data}
-        margin={{ top: 10, right: 10, bottom: 40, left: 50 }}
+        margin={isMobile ? { top: 10, right: 10, bottom: 30, left: 35 } : { top: 10, right: 10, bottom: 40, left: 50 }}
         xScale={{ type: 'point' }}
         yScale={{ type: 'linear', min: 0, max: 'auto' }}
         curve="catmullRom"
@@ -61,7 +69,7 @@ function YearlyInvestmentChart() {
           tickSize: 0,
           tickPadding: 10,
           tickValues: 5,
-          format: v => `$${v.toLocaleString()}`
+          format: v => `$${isMobile ? (v/1000)+'k' : v.toLocaleString()}`
         }}
         colors={['#FFB648']}
         pointSize={8}
@@ -92,7 +100,16 @@ function YearlyInvestmentChart() {
   );
 }
 
+
 function MonthlyRevenueChart() {
+  const [isMobile, setIsMobile] = React.useState(window.innerWidth < 768);
+
+  React.useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const values = [12000, 18000, 11000, 26000, 31000, 20000, 27000, 23000, 15000, 33000];
   const labels = ["2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025"];
   
@@ -104,10 +121,10 @@ function MonthlyRevenueChart() {
   ];
 
   return (
-    <div style={{ width: '100%', height: '250px' }}>
+    <div className="investments-chart-frame" style={{ width: '100%' }}>
       <ResponsiveLine
         data={data}
-        margin={{ top: 10, right: 10, bottom: 40, left: 50 }}
+        margin={isMobile ? { top: 10, right: 10, bottom: 30, left: 35 } : { top: 10, right: 10, bottom: 40, left: 50 }}
         xScale={{ type: 'point' }}
         yScale={{ type: 'linear', min: 0, max: 'auto' }}
         curve="catmullRom"
@@ -121,7 +138,7 @@ function MonthlyRevenueChart() {
           tickSize: 0,
           tickPadding: 10,
           tickValues: 5,
-          format: v => `$${v.toLocaleString()}`
+          format: v => `$${isMobile ? (v/1000)+'k' : v.toLocaleString()}`
         }}
         colors={['#16DBCC']}
         enablePoints={false}
@@ -148,6 +165,7 @@ function MonthlyRevenueChart() {
     </div>
   );
 }
+
 
 
 function InvestmentsPage() {

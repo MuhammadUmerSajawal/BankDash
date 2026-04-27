@@ -147,7 +147,7 @@ function Header({ title, onMenuClick }) {
           {/* Avatar – always visible */}
           <div className="rounded-circle overflow-hidden flex-shrink-0 page-header__avatar">
             <img
-              // src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+              src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
               alt="Profile"
               className="w-100 h-100 object-fit-cover"
             />

@@ -25,13 +25,21 @@ function WeeklyActivityChart() {
     { day: "Fri", deposit: 395, withdraw: 340 },
   ];
 
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  React.useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
-    <div style={{ width: '100%', height: '280px' }}>
+    <div className="dashboard-chart-frame--bars" style={{ width: '100%' }}>
       <ResponsiveBar
         data={data}
         keys={['withdraw', 'deposit']}
         indexBy="day"
-        margin={{ top: 20, right: 0, bottom: 40, left: 30 }}
+        margin={isMobile ? { top: 10, right: 0, bottom: 30, left: 25 } : { top: 20, right: 0, bottom: 40, left: 30 }}
         padding={0.4}
         groupMode="grouped"
         valueScale={{ type: 'linear' }}
