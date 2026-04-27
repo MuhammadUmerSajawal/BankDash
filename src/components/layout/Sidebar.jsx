@@ -26,6 +26,7 @@ const navItems = [
 function Sidebar({ onNavigate }) {
   return (
     <aside className="sidebar">
+        {/* Brand Logo */}
       <div className="sidebar__brand">
         <div className="sidebar__logo" aria-hidden="true">
           <span className="sidebar__logo-stack" />
@@ -34,6 +35,7 @@ function Sidebar({ onNavigate }) {
         <h2 className="m-0 fs-5 fw-bold" style={{ color: '#232b5d' }}>BankDash.</h2>
       </div>
 
+        {/* Navigations  */} 
       <div className="sidebar__nav mt-2">
         {navItems.map((item) => (
           <NavLink
