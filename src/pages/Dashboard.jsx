@@ -11,6 +11,9 @@ import {
 import { FaPaypal } from "react-icons/fa";
 
 /* High-End Chart Components */
+import { ResponsiveBar } from '@nivo/bar';
+import { ResponsiveLine } from '@nivo/line';
+
 function WeeklyActivityChart() {
   const data = [
     { day: "Sat", deposit: 480, withdraw: 240 },
@@ -21,188 +24,175 @@ function WeeklyActivityChart() {
     { day: "Thu", deposit: 390, withdraw: 240 },
     { day: "Fri", deposit: 395, withdraw: 340 },
   ];
-  const chartWidth = 560;
-  const chartHeight = 260;
-  const left = 48;
-  const right = 16;
-  const top = 20;
-  const bottom = 38;
-  const plotWidth = chartWidth - left - right;
-  const plotHeight = chartHeight - top - bottom;
-  const maxValue = 500;
-  const stepX = plotWidth / data.length;
-  const barWidth = 12;
-  const gap = 5;
-  const scaleY = (value) => top + plotHeight - (value / maxValue) * plotHeight;
 
   return (
-    <svg viewBox={`0 0 ${chartWidth} ${chartHeight}`} className="dashboard-chart dashboard-chart--bars" preserveAspectRatio="none">
-      <g stroke="#F2F4F7" strokeWidth="1">
-        {[0, 100, 200, 300, 400, 500].map((val) => {
-          const y = scaleY(val);
-          return (
-            <React.Fragment key={val}>
-              <line x1={left} y1={y} x2={chartWidth - right} y2={y} strokeDasharray="4 4" />
-              <text x={left - 12} y={y} fontSize="12" fill="#718EBF" stroke="none" textAnchor="end" alignmentBaseline="middle">{val}</text>
-            </React.Fragment>
-          );
-        })}
-      </g>
-      
-      {data.map((p, i) => {
-        const groupCenter = left + stepX * i + stepX / 2;
-        const depositY = scaleY(p.deposit);
-        const withdrawY = scaleY(p.withdraw);
-        const depositHeight = top + plotHeight - depositY;
-        const withdrawHeight = top + plotHeight - withdrawY;
-        return (
-          <g key={i}>
-            <rect x={groupCenter - barWidth - gap / 2} y={depositY} width={barWidth} height={depositHeight} rx="6" fill="#1814F3" />
-            <rect x={groupCenter + gap / 2} y={withdrawY} width={barWidth} height={withdrawHeight} rx="6" fill="#16DBCC" />
-            <text x={groupCenter} y={chartHeight - 10} fontSize="12" fill="#718EBF" textAnchor="middle">{p.day}</text>
-          </g>
-        );
-      })}
-    </svg>
+    <div style={{ width: '100%', height: '280px' }}>
+      <ResponsiveBar
+        data={data}
+        keys={['withdraw', 'deposit']}
+        indexBy="day"
+        margin={{ top: 20, right: 0, bottom: 40, left: 30 }}
+        padding={0.4}
+        groupMode="grouped"
+        valueScale={{ type: 'linear' }}
+        indexScale={{ type: 'band', round: true }}
+        colors={['#16DBCC', '#1814F3']}
+        borderRadius={6}
+        axisTop={null}
+        axisRight={null}
+        axisBottom={{
+          tickSize: 5,
+          tickPadding: 5,
+          tickRotation: 0,
+        }}
+        axisLeft={{
+          tickSize: 5,
+          tickPadding: 5,
+          tickRotation: 0,
+        }}
+        enableLabel={false}
+        role="application"
+        ariaLabel="Weekly activity bar chart"
+        theme={{
+          axis: {
+            ticks: {
+              text: {
+                fill: '#718EBF',
+                fontSize: 11,
+              }
+            }
+          },
+          grid: {
+            line: {
+              stroke: '#F2F4F7',
+              strokeWidth: 1,
+              strokeDasharray: '4 4'
+            }
+          }
+        }}
+      />
+    </div>
   );
 }
+
+import { ResponsivePie } from '@nivo/pie';
 
 const ExpensePieChart = () => {
   const data = [
-    { label: 'Entertainment', value: 30, color: '#343C6A' },
-    { label: 'Bill Expense', value: 15, color: '#FFBB38' },
-    { label: 'Others', value: 35, color: '#1814F3' },
-    { label: 'Investment', value: 20, color: '#FF82AC' },
+    { id: 'Entertainment', label: 'Entertainment', value: 30, color: '#343C6A' },
+    { id: 'Bill Expense', label: 'Bill Expense', value: 15, color: '#FFBB38' },
+    { id: 'Others', label: 'Others', value: 35, color: '#1814F3' },
+    { id: 'Investment', label: 'Investment', value: 20, color: '#FF82AC' },
   ];
 
-  let currentAngle = -90;
-  const cx = 100;
-  const cy = 100;
-  const radius = 80;
-  const explode = 4;
-
   return (
-    <svg viewBox="0 0 200 200" className="dashboard-chart dashboard-chart--pie" preserveAspectRatio="xMidYMid meet">
-      {data.map((item, index) => {
-        const sliceAngle = (item.value / 100) * 360;
-        const startAngle = currentAngle;
-        const endAngle = currentAngle + sliceAngle;
-        currentAngle += sliceAngle;
-
-        const startRad = (startAngle * Math.PI) / 180;
-        const endRad = (endAngle * Math.PI) / 180;
-        const midRad = ((startAngle + sliceAngle / 2) * Math.PI) / 180;
-
-        const x1 = cx + radius * Math.cos(startRad);
-        const y1 = cy + radius * Math.sin(startRad);
-        const x2 = cx + radius * Math.cos(endRad);
-        const y2 = cy + radius * Math.sin(endRad);
-
-        const largeArcFlag = sliceAngle > 180 ? 1 : 0;
-
-        const offsetX = Math.cos(midRad) * explode;
-        const offsetY = Math.sin(midRad) * explode;
-
-        const pathData = [
-          `M ${cx + offsetX} ${cy + offsetY}`,
-          `L ${x1 + offsetX} ${y1 + offsetY}`,
-          `A ${radius} ${radius} 0 ${largeArcFlag} 1 ${x2 + offsetX} ${y2 + offsetY}`,
-          'Z'
-        ].join(' ');
-
-        const textX = cx + offsetX + (radius * 0.6) * Math.cos(midRad);
-        const textY = cy + offsetY + (radius * 0.6) * Math.sin(midRad);
-
-        return (
-          <g key={index}>
-            <path d={pathData} fill={item.color} stroke="white" strokeWidth="2" />
-            <text x={textX} y={textY} fill="white" fontSize="10" fontWeight="bold" textAnchor="middle" alignmentBaseline="middle">
-              <tspan x={textX} dy="-4">{item.value}%</tspan>
-              <tspan x={textX} dy="12" fontSize="7">{item.label}</tspan>
-            </text>
-          </g>
-        );
-      })}
-    </svg>
+    <div style={{ width: '100%', height: '280px' }}>
+      <ResponsivePie
+        data={data}
+        margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
+        innerRadius={0}
+        padAngle={0}
+        cornerRadius={0}
+        activeOuterRadiusOffset={8}
+        colors={data.map(d => d.color)}
+        colorBy="index"
+        borderWidth={0}
+        enableArcLinkLabels={false}
+        arcLabel={(d) => `${d.value}%\n${d.id}`}
+        arcLabelsSkipAngle={8}
+        arcLabelsTextColor="#ffffff"
+        arcLabelsRadiusOffset={0.5}
+        theme={{
+          labels: {
+            text: {
+              fontSize: 9,
+              fontWeight: 700,
+              fill: '#ffffff',
+              whiteSpace: 'pre-line',
+            }
+          },
+          tooltip: {
+            container: {
+              background: '#ffffff',
+              color: '#333333',
+              fontSize: 12,
+              borderRadius: 8,
+              boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+            }
+          }
+        }}
+      />
+    </div>
   );
 };
 
+
 function BalanceHistoryChart() {
-  const months = ["Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan"];
-  const values = [180, 360, 420, 760, 220, 540, 610];
-  const chartWidth = 640;
-  const chartHeight = 180;
-  const left = 44;
-  const right = 12;
-  const top = 14;
-  const bottom = 28;
-  const maxValue = 800;
-  const plotWidth = chartWidth - left - right;
-  const plotHeight = chartHeight - top - bottom;
-  const stepX = plotWidth / (months.length - 1);
-  const scaleY = (value) => top + plotHeight - (value / maxValue) * plotHeight;
-  const points = values.map((value, index) => ({
-    x: left + stepX * index,
-    y: scaleY(value),
-  }));
-  const linePath = points
-    .map((point, index, arr) => {
-      if (index === 0) {
-        return `M ${point.x} ${point.y}`;
-      }
-      const prev = arr[index - 1];
-      const cp1x = prev.x + stepX / 3;
-      const cp1y = prev.y;
-      const cp2x = point.x - stepX / 3;
-      const cp2y = point.y;
-      return `C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${point.x} ${point.y}`;
-    })
-    .join(" ");
-  const areaPath = `${linePath} L ${left + plotWidth} ${top + plotHeight} L ${left} ${top + plotHeight} Z`;
+  const data = [
+    {
+      id: "balance",
+      color: "hsl(243, 70%, 50%)",
+      data: [
+        { x: "Jul", y: 180 },
+        { x: "Aug", y: 360 },
+        { x: "Sep", y: 420 },
+        { x: "Oct", y: 760 },
+        { x: "Nov", y: 220 },
+        { x: "Dec", y: 540 },
+        { x: "Jan", y: 610 },
+      ]
+    }
+  ];
 
   return (
-    <svg viewBox={`0 0 ${chartWidth} ${chartHeight}`} className="dashboard-chart dashboard-chart--line" preserveAspectRatio="none">
-      <g stroke="#b2b4b6ff" strokeWidth="1">
-        {[0, 200, 400, 600, 800].map((value) => {
-          const y = scaleY(value);
-          return (
-            <React.Fragment key={value}>
-              <line x1={left} y1={y} x2={chartWidth - right} y2={y} strokeDasharray="4 4" />
-              <text x={left - 10} y={y} fontSize="11" fill="#718EBF" textAnchor="end" alignmentBaseline="middle">
-                {value}
-              </text>
-            </React.Fragment>
-          );
-        })}
-        {months.map((month, index) => {
-          const x = left + stepX * index;
-          return <line key={month} x1={x} y1={top} x2={x} y2={top + plotHeight} strokeDasharray="2 6" />;
-        })}
-      </g>
-
-      <path
-        d={areaPath}
-        fill="url(#gradient)"
-        opacity="0.18"
+    <div style={{ width: '100%', height: '180px' }}>
+      <ResponsiveLine
+        data={data}
+        margin={{ top: 10, right: 10, bottom: 30, left: 30 }}
+        xScale={{ type: 'point' }}
+        yScale={{ type: 'linear', min: 0, max: 'auto' }}
+        curve="catmullRom"
+        axisTop={null}
+        axisRight={null}
+        axisBottom={{
+          tickSize: 0,
+          tickPadding: 10,
+        }}
+        axisLeft={{
+          tickSize: 0,
+          tickPadding: 10,
+          tickValues: 5,
+        }}
+        enableGridX={true}
+        enableGridY={true}
+        colors={['#1814F3']}
+        enablePoints={false}
+        enableArea={true}
+        areaOpacity={0.15}
+        useMesh={true}
+        theme={{
+          axis: {
+            ticks: {
+              text: {
+                fill: '#718EBF',
+                fontSize: 11,
+              }
+            }
+          },
+          grid: {
+            line: {
+              stroke: '#F2F4F7',
+              strokeWidth: 1,
+              strokeDasharray: '4 4'
+            }
+          }
+        }}
       />
-      <path d={linePath} fill="none" stroke="#1814F3" strokeWidth="3" strokeLinecap="round" />
-      {months.map((month, index) => {
-        const x = left + stepX * index;
-        return (
-          <text key={month} x={x} y={chartHeight - 8} fontSize="11" fill="#718EBF" textAnchor="middle">
-            {month}
-          </text>
-        );
-      })}
-      <defs>
-        <linearGradient id="gradient" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#1814F3" />
-          <stop offset="100%" stopColor="transparent" />
-        </linearGradient>
-      </defs>
-    </svg>
+    </div>
   );
 }
+
+
 
 function Dashboard() {
   const contacts = useMemo(

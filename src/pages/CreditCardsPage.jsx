@@ -31,18 +31,45 @@ const settings = [
   { title: "Add to Apple Store", desc: "Withdraw without any card", icon: FaApple, bg: "#DCFAF8", color: "#16C9B8" },
 ];
 
+import { ResponsivePie } from '@nivo/pie';
+
 function DonutChart() {
+  const data = [
+    { id: "DBL Bank", value: 25, color: "#4C6EF5" },
+    { id: "BRC Bank", value: 25, color: "#FF82AC" },
+    { id: "ABM Bank", value: 25, color: "#16DBCC" },
+    { id: "MCP Bank", value: 25, color: "#FFBB38" },
+  ];
+
   return (
-    <svg viewBox="0 0 220 220" className="credit-cards-donut" preserveAspectRatio="xMidYMid meet">
-      <circle cx="110" cy="110" r="54" fill="none" stroke="#F2F4F7" strokeWidth="30" />
-      <path d="M 110 56 A 54 54 0 0 1 164 110" fill="none" stroke="#16DBCC" strokeWidth="30" strokeLinecap="round" />
-      <path d="M 164 110 A 54 54 0 0 1 110 164" fill="none" stroke="#FF82AC" strokeWidth="30" strokeLinecap="round" />
-      <path d="M 110 164 A 54 54 0 0 1 56 110" fill="none" stroke="#FFBB38" strokeWidth="30" strokeLinecap="round" />
-      <path d="M 56 110 A 54 54 0 0 1 110 56" fill="none" stroke="#4C6EF5" strokeWidth="30" strokeLinecap="round" />
-      <circle cx="110" cy="110" r="24" fill="#fff" />
-    </svg>
+    <div style={{ width: '100%', height: '220px' }}>
+      <ResponsivePie
+        data={data}
+        margin={{ top: 10, right: 10, bottom: 10, left: 10 }}
+        innerRadius={0.65}
+        padAngle={2}
+        cornerRadius={3}
+        activeOuterRadiusOffset={8}
+        colors={data.map(d => d.color)}
+        borderWidth={0}
+        enableArcLinkLabels={false}
+        enableArcLabels={false}
+        theme={{
+          tooltip: {
+            container: {
+              background: '#ffffff',
+              color: '#333333',
+              fontSize: 12,
+              borderRadius: 8,
+              boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+            }
+          }
+        }}
+      />
+    </div>
   );
 }
+
 
 function CreditCardsPage() {
   const [creditCards, setCreditCards] = useState(initialCreditCards);

@@ -75,51 +75,50 @@ function formatAmount(amount) {
   return `${sign}$${Math.abs(amount).toLocaleString()}`;
 }
 
+import { ResponsiveBar } from '@nivo/bar';
+
 function ExpenseChart() {
-  const chartWidth = 280;
-  const chartHeight = 180;
-  const left = 16;
-  const right = 16;
-  const top = 18;
-  const bottom = 34;
-  const plotHeight = chartHeight - top - bottom;
-  const plotWidth = chartWidth - left - right;
-  const maxValue = 14000;
-  const step = plotWidth / expenseSeries.length;
-  const barWidth = 26;
+  const data = expenseSeries.map(item => ({
+    ...item,
+    color: item.month === "Dec" ? "#16DBCC" : "#F2F4F7"
+  }));
 
   return (
-    <svg viewBox={`0 0 ${chartWidth} ${chartHeight}`} className="transactions-expense-chart-svg" preserveAspectRatio="none">
-      {expenseSeries.map((item, index) => {
-        const x = left + step * index + (step - barWidth) / 2;
-        const height = (item.amount / maxValue) * plotHeight;
-        const y = top + plotHeight - height;
-        const isActive = item.month === "Dec";
-
-        return (
-          <g key={item.month}>
-            <rect
-              x={x}
-              y={y}
-              width={barWidth}
-              height={height}
-              rx="8"
-              fill={isActive ? "#16DBCC" : "#E7ECF7"}
-            />
-            {isActive ? (
-              <text x={x + barWidth / 2} y={y - 10} textAnchor="middle" fontSize="11" fontWeight="700" fill="#343C6A">
-                $12,500
-              </text>
-            ) : null}
-            <text x={x + barWidth / 2} y={chartHeight - 10} textAnchor="middle" fontSize="11" fill="#718EBF">
-              {item.month}
-            </text>
-          </g>
-        );
-      })}
-    </svg>
+    <div style={{ width: '100%', height: '180px' }}>
+      <ResponsiveBar
+        data={data}
+        keys={['amount']}
+        indexBy="month"
+        margin={{ top: 20, bottom: 25, left: 10, right: 10 }}
+        padding={0.5}
+        valueScale={{ type: 'linear' }}
+        indexScale={{ type: 'band', round: true }}
+        colors={({ data }) => data.color}
+        borderRadius={8}
+        axisTop={null}
+        axisRight={null}
+        axisBottom={{
+          tickSize: 0,
+          tickPadding: 10,
+        }}
+        axisLeft={null}
+        enableGridY={false}
+        enableLabel={false}
+        theme={{
+          axis: {
+            ticks: {
+              text: {
+                fill: '#718EBF',
+                fontSize: 11,
+              }
+            }
+          }
+        }}
+      />
+    </div>
   );
 }
+
 
 function TransactionsPage() {
   const [activeFilter, setActiveFilter] = useState("all");

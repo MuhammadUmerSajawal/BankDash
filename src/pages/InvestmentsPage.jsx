@@ -33,117 +33,122 @@ const yearlySeries = [
   { year: "2021", value: 28000 },
 ];
 
-function buildLinePath(points) {
-  return points
-    .map((point, index, arr) => {
-      if (index === 0) {
-        return `M ${point.x} ${point.y}`;
-      }
-
-      const prev = arr[index - 1];
-      const dx = (point.x - prev.x) / 3;
-      return `C ${prev.x + dx} ${prev.y}, ${point.x - dx} ${point.y}, ${point.x} ${point.y}`;
-    })
-    .join(" ");
-}
+import { ResponsiveLine } from '@nivo/line';
 
 function YearlyInvestmentChart() {
-  const chartWidth = 520;
-  const chartHeight = 250;
-  const left = 56;
-  const right = 18;
-  const top = 18;
-  const bottom = 42;
-  const maxValue = 40000;
-  const plotWidth = chartWidth - left - right;
-  const plotHeight = chartHeight - top - bottom;
-  const stepX = plotWidth / (yearlySeries.length - 1);
-  const scaleY = (value) => top + plotHeight - (value / maxValue) * plotHeight;
-  const points = yearlySeries.map((item, index) => ({
-    x: left + stepX * index,
-    y: scaleY(item.value),
-    label: item.year,
-    value: item.value,
-  }));
-  const linePath = buildLinePath(points);
+  const data = [
+    {
+      id: "yearly",
+      data: yearlySeries.map(item => ({ x: item.year, y: item.value }))
+    }
+  ];
 
   return (
-    <svg viewBox={`0 0 ${chartWidth} ${chartHeight}`} className="investments-chart" preserveAspectRatio="none">
-      <g stroke="#E9EEF7" strokeWidth="1">
-        {[0, 10000, 20000, 30000, 40000].map((value) => {
-          const y = scaleY(value);
-          return (
-            <React.Fragment key={value}>
-              <line x1={left} y1={y} x2={chartWidth - right} y2={y} strokeDasharray="4 4" />
-              <text x={left - 14} y={y} textAnchor="end" alignmentBaseline="middle" fontSize="11" fill="#8BA3CB">
-                ${value.toLocaleString()}
-              </text>
-            </React.Fragment>
-          );
-        })}
-      </g>
-
-      <path d={linePath} fill="none" stroke="#FFB648" strokeWidth="3" strokeLinecap="round" />
-      {points.map((point) => (
-        <g key={point.label}>
-          <circle cx={point.x} cy={point.y} r="4.5" fill="#fff" stroke="#F59E0B" strokeWidth="2" />
-          <text x={point.x} y={chartHeight - 10} textAnchor="middle" fontSize="11" fill="#8BA3CB">
-            {point.label}
-          </text>
-        </g>
-      ))}
-    </svg>
+    <div style={{ width: '100%', height: '250px' }}>
+      <ResponsiveLine
+        data={data}
+        margin={{ top: 10, right: 10, bottom: 40, left: 50 }}
+        xScale={{ type: 'point' }}
+        yScale={{ type: 'linear', min: 0, max: 'auto' }}
+        curve="catmullRom"
+        axisTop={null}
+        axisRight={null}
+        axisBottom={{
+          tickSize: 0,
+          tickPadding: 10,
+        }}
+        axisLeft={{
+          tickSize: 0,
+          tickPadding: 10,
+          tickValues: 5,
+          format: v => `$${v.toLocaleString()}`
+        }}
+        colors={['#FFB648']}
+        pointSize={8}
+        pointColor="#ffffff"
+        pointBorderWidth={2}
+        pointBorderColor="#F59E0B"
+        enableArea={false}
+        useMesh={true}
+        theme={{
+          axis: {
+            ticks: {
+              text: {
+                fill: '#8BA3CB',
+                fontSize: 11,
+              }
+            }
+          },
+          grid: {
+            line: {
+              stroke: '#E9EEF7',
+              strokeWidth: 1,
+              strokeDasharray: '4 4'
+            }
+          }
+        }}
+      />
+    </div>
   );
 }
 
 function MonthlyRevenueChart() {
   const values = [12000, 18000, 11000, 26000, 31000, 20000, 27000, 23000, 15000, 33000];
-  const labels = ["2016", "2017", "2018", "2019", "2020", "2021"];
-  const chartWidth = 520;
-  const chartHeight = 250;
-  const left = 56;
-  const right = 18;
-  const top = 18;
-  const bottom = 42;
-  const maxValue = 40000;
-  const plotWidth = chartWidth - left - right;
-  const plotHeight = chartHeight - top - bottom;
-  const stepX = plotWidth / (values.length - 1);
-  const scaleY = (value) => top + plotHeight - (value / maxValue) * plotHeight;
-  const points = values.map((value, index) => ({
-    x: left + stepX * index,
-    y: scaleY(value),
-  }));
-  const linePath = buildLinePath(points);
+  const labels = ["2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025"];
+  
+  const data = [
+    {
+      id: "monthly",
+      data: labels.map((label, i) => ({ x: label, y: values[i] }))
+    }
+  ];
 
   return (
-    <svg viewBox={`0 0 ${chartWidth} ${chartHeight}`} className="investments-chart" preserveAspectRatio="none">
-      <g stroke="#E9EEF7" strokeWidth="1">
-        {[0, 10000, 20000, 30000, 40000].map((value) => {
-          const y = scaleY(value);
-          return (
-            <React.Fragment key={value}>
-              <line x1={left} y1={y} x2={chartWidth - right} y2={y} strokeDasharray="4 4" />
-              <text x={left - 14} y={y} textAnchor="end" alignmentBaseline="middle" fontSize="11" fill="#8BA3CB">
-                ${value.toLocaleString()}
-              </text>
-            </React.Fragment>
-          );
-        })}
-      </g>
-
-      <path d={linePath} fill="none" stroke="#16DBCC" strokeWidth="3" strokeLinecap="round" />
-      {labels.map((label, index) => {
-        const x = left + (plotWidth / (labels.length - 1)) * index;
-        return (
-          <text key={label} x={x} y={chartHeight - 10} textAnchor="middle" fontSize="11" fill="#8BA3CB">
-            {label}
-          </text>
-        );
-      })}
-    </svg>
+    <div style={{ width: '100%', height: '250px' }}>
+      <ResponsiveLine
+        data={data}
+        margin={{ top: 10, right: 10, bottom: 40, left: 50 }}
+        xScale={{ type: 'point' }}
+        yScale={{ type: 'linear', min: 0, max: 'auto' }}
+        curve="catmullRom"
+        axisTop={null}
+        axisRight={null}
+        axisBottom={{
+          tickSize: 0,
+          tickPadding: 10,
+        }}
+        axisLeft={{
+          tickSize: 0,
+          tickPadding: 10,
+          tickValues: 5,
+          format: v => `$${v.toLocaleString()}`
+        }}
+        colors={['#16DBCC']}
+        enablePoints={false}
+        enableArea={false}
+        useMesh={true}
+        theme={{
+          axis: {
+            ticks: {
+              text: {
+                fill: '#8BA3CB',
+                fontSize: 11,
+              }
+            }
+          },
+          grid: {
+            line: {
+              stroke: '#E9EEF7',
+              strokeWidth: 1,
+              strokeDasharray: '4 4'
+            }
+          }
+        }}
+      />
+    </div>
   );
 }
+
 
 function InvestmentsPage() {
   return (

@@ -80,43 +80,57 @@ function formatAmount(amount) {
   return `${sign}$${Math.abs(amount).toLocaleString()}`;
 }
 
+import { ResponsiveBar } from '@nivo/bar';
+
 function DebitCreditChart() {
-  const chartWidth = 620;
-  const chartHeight = 240;
-  const left = 18;
-  const right = 12;
-  const top = 24;
-  const bottom = 36;
-  const plotWidth = chartWidth - left - right;
-  const plotHeight = chartHeight - top - bottom;
-  const stepX = plotWidth / debitCreditSeries.length;
-  const maxValue = 700;
-  const barWidth = 26;
-  const gap = 8;
-  const scaleY = (value) => top + plotHeight - (value / maxValue) * plotHeight;
-
   return (
-    <svg viewBox={`0 0 ${chartWidth} ${chartHeight}`} className="accounts-chart" preserveAspectRatio="none">
-      {debitCreditSeries.map((item, index) => {
-        const groupCenter = left + stepX * index + stepX / 2;
-        const debitY = scaleY(item.debit);
-        const creditY = scaleY(item.credit);
-        const debitHeight = top + plotHeight - debitY;
-        const creditHeight = top + plotHeight - creditY;
-
-        return (
-          <g key={item.day}>
-            <rect x={groupCenter - barWidth - gap / 2} y={debitY} width={barWidth} height={debitHeight} rx="8" fill="#1814F3" />
-            <rect x={groupCenter + gap / 2} y={creditY} width={barWidth} height={creditHeight} rx="8" fill="#FFB648" />
-            <text x={groupCenter} y={chartHeight - 10} textAnchor="middle" fontSize="12" fill="#718EBF">
-              {item.day}
-            </text>
-          </g>
-        );
-      })}
-    </svg>
+    <div style={{ width: '100%', height: '240px' }}>
+      <ResponsiveBar
+        data={debitCreditSeries}
+        keys={['debit', 'credit']}
+        indexBy="day"
+        margin={{ top: 20, right: 0, bottom: 40, left: 30 }}
+        padding={0.3}
+        groupMode="grouped"
+        valueScale={{ type: 'linear' }}
+        indexScale={{ type: 'band', round: true }}
+        colors={['#1814F3', '#FF82AC']}
+        borderRadius={8}
+        axisTop={null}
+        axisRight={null}
+        axisBottom={{
+          tickSize: 5,
+          tickPadding: 5,
+          tickRotation: 0,
+        }}
+        axisLeft={{
+          tickSize: 5,
+          tickPadding: 5,
+          tickRotation: 0,
+        }}
+        enableLabel={false}
+        theme={{
+          axis: {
+            ticks: {
+              text: {
+                fill: '#718EBF',
+                fontSize: 11,
+              }
+            }
+          },
+          grid: {
+            line: {
+              stroke: '#F2F4F7',
+              strokeWidth: 1,
+              strokeDasharray: '4 4'
+            }
+          }
+        }}
+      />
+    </div>
   );
 }
+
 
 function AccountsPage() {
   return (
